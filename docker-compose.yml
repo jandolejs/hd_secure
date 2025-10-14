@@ -13,6 +13,19 @@ services:
             - "traefik.http.routers.hd_secure.rule=Host(`www.hdsecure.cz`)||Host(`hdsecure.cz`)"
             - "traefik.http.routers.hd_secure.entrypoints=web,websecure"
 
+    dotacenapohodu:
+        image: ghcr.io/jandolejs/dotacenapohodu:latest
+        build:
+            context: dotacenapohodu
+        container_name: "hd_secure_frontend"
+        restart: unless-stopped
+        networks:
+            - web
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.dotacenapohodu.rule=HostRegexp(`^((.+)\\.)*dotacenapohodu.cz$`)"
+            - "traefik.http.routers.dotacenapohodu.entrypoints=web,websecure"
+
 networks:
     web:
         name: www
