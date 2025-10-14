@@ -2,7 +2,7 @@ services:
     hd_secure:
         image: ghcr.io/jandolejs/hd_secure:latest
         build:
-            context: .
+            context: hd_secure
         container_name: "hd_secure_frontend"
         restart: unless-stopped
         networks:
@@ -10,7 +10,7 @@ services:
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.hd_secure.rule=Host(`hdsecure.cz`)"
-            - "traefik.http.routers.hd_secure.entrypoints=websecure"
+            - "traefik.http.routers.hd_secure.entrypoints=web,websecure"
 
 networks:
     web:
