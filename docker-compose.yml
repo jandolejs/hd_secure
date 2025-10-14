@@ -1,0 +1,20 @@
+services:
+    hd_secure:
+        image: ghcr.io/jandolejs/hd_secure:latest
+        build:
+            context: .
+        container_name: "hd_secure_frontend"
+        restart: unless-stopped
+        ports:
+            - 8080:80
+        networks:
+            - web
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.hd_secure.rule=Host(`hdsecure.cz`)"
+            - "traefik.http.routers.hd_secure.entrypoints=websecure"
+
+networks:
+    web:
+        name: www
+        external: true
