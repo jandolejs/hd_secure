@@ -1,4 +1,5 @@
 services:
+
     hd_secure:
         image: ghcr.io/jandolejs/hd_secure:latest
         build:
@@ -9,7 +10,7 @@ services:
             - web
         labels:
             - "traefik.enable=true"
-            - "traefik.http.routers.hd_secure.rule=Host(`hdsecure.cz`)"
+            - "traefik.http.routers.hd_secure.rule=Host(`www.hdsecure.cz`)||Host(`hdsecure.cz`)"
             - "traefik.http.routers.hd_secure.entrypoints=web,websecure"
 
 networks:
