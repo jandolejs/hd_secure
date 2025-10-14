@@ -17,7 +17,7 @@ services:
         image: ghcr.io/jandolejs/dotacenapohodu:latest
         build:
             context: dotacenapohodu
-        container_name: "hd_secure_frontend"
+        container_name: "dotacenapohodu_frontend"
         restart: unless-stopped
         networks:
             - web
