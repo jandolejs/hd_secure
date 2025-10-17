@@ -26,6 +26,19 @@ services:
             - "traefik.http.routers.dotacenapohodu.rule=HostRegexp(`^((.+)\\.)*dotacenapohodu.cz$`)"
             - "traefik.http.routers.dotacenapohodu.entrypoints=web,websecure"
 
+    keverner:
+        image: ghcr.io/jandolejs/keverner:latest
+        build:
+            context: keverner
+        container_name: "keverner_frontend"
+        restart: unless-stopped
+        networks:
+            - web
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.keverner.rule=HostRegexp(`^((.+)\\.)*keverner.cz$`)"
+            - "traefik.http.routers.keverner.entrypoints=web,websecure"
+
 networks:
     web:
         name: www
