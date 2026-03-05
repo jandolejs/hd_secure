@@ -4,42 +4,9 @@ services:
         image: ghcr.io/jandolejs/hd_secure:latest
         build:
             context: hd_secure
-        container_name: "hd_secure_frontend"
+        container_name: hd_secure_frontend
         restart: unless-stopped
         networks:
             - web
-        labels:
-            - "traefik.enable=true"
-            - "traefik.http.routers.hd_secure.rule=Host(`www.hdsecure.cz`)||Host(`hdsecure.cz`)"
-            - "traefik.http.routers.hd_secure.entrypoints=web,websecure"
-
-    dotacenapohodu:
-        image: ghcr.io/jandolejs/dotacenapohodu:latest
-        build:
-            context: dotacenapohodu
-        container_name: "dotacenapohodu_frontend"
-        restart: unless-stopped
-        networks:
-            - web
-        labels:
-            - "traefik.enable=true"
-            - "traefik.http.routers.dotacenapohodu.rule=HostRegexp(`^((.+)\\.)*dotacenapohodu.cz$`)"
-            - "traefik.http.routers.dotacenapohodu.entrypoints=web,websecure"
-
-    keverner:
-        image: ghcr.io/jandolejs/keverner:latest
-        build:
-            context: keverner
-        container_name: "keverner_frontend"
-        restart: unless-stopped
-        networks:
-            - web
-        labels:
-            - "traefik.enable=true"
-            - "traefik.http.routers.keverner.rule=HostRegexp(`^((.+)\\.)*keverner.cz$`)"
-            - "traefik.http.routers.keverner.entrypoints=web,websecure"
-
-networks:
-    web:
-        name: www
-        external: true
+        ports:
+            - 8084:80
