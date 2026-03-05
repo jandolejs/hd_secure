@@ -3,10 +3,8 @@ services:
     hd_secure:
         image: ghcr.io/jandolejs/hd_secure:latest
         build:
-            context: hd_secure
+            context: .
         container_name: hd_secure_frontend
         restart: unless-stopped
-        networks:
-            - web
         ports:
             - 8084:80
